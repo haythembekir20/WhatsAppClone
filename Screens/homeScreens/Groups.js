@@ -25,7 +25,6 @@ export default function Groups(props) {
   const [urlImage, seturlImage] = useState();
 
   // Recuperer içi les données de l'utilisateur courant (Nom,Prenom,Telephone,Pseudo,url/urlImage)
-  // get the data of the current user
   const ref_currentuser = database.ref("users").child(currentid);
   ref_currentuser.on("value", (snapshot) => {
     const userData = snapshot.val();
@@ -40,6 +39,24 @@ export default function Groups(props) {
   const pickDocument = async () => {
     let result = await DocumentPicker.getDocumentAsync({});
     console.log(result.assets[0].uri);
+  };
+  const [filePath, setFilePath] = useState('');
+
+  const selectFile = async () => {
+    try {
+      const result = await DocumentPicker.getDocumentAsync({});
+      if (result.type === 'success') {
+        setFilePath(result.uri);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const sendWork = () => {
+    if (filePath) {
+      console.log(filePath);
+    } 
   };
 
   const imageToBlob = async (uri) => {
@@ -75,10 +92,9 @@ export default function Groups(props) {
 
   const ref_forum = database.ref("forum");
   // recuperer içi le contenu de la reference 'forum' =>
-  ref_forum.on("value", (snapshot) => {
-    const forumData = snapshot.val();
-    setData(forumData);
-  });
+
+  
+  
 
   return (
     <ImageBackground
@@ -128,12 +144,11 @@ export default function Groups(props) {
       ></FlatList>
 
       <Text style={{ fontSize: 8, fontWeight: "bold", color: "red" }}></Text>
-      <Button onPress={async () => {}} title="Select file"></Button>
-      <button>
-        <Button onPress={pickDocument} title="Select file"></Button>
-        
-      </button>
-      <Button onPress={async () => {}} title="Send work"></Button>
+     
+
+      <Button onPress={selectFile} title="Select file" />
+      {filePath ? <Text>Selected File: {filePath}</Text> : null}
+      <Button onPress={sendWork} title="Send work" />
       <View
         style={{
           flexDirection: "row",
