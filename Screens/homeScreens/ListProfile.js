@@ -84,15 +84,16 @@ export default function ListProfils(props) {
                 marginLeft: 20,
               }}
               >{item.Pseudo}</Text>
-              <View
-                style={{
-                  height: 10,
-                  width: 10,
-                  backgroundColor: item.Connected ? "green" : "red",
-                  borderRadius: 5,
-                  marginLeft: 20,
-                }}
-              ></View>
+              <Button onPress={() => {
+            props.navigation.navigate("Chat",
+              {
+                currentid: currentid,
+                destinataire: item.idProfile,
+
+              });
+          }
+          }>chat</Button>
+             
             </View>
           );
         }}
@@ -119,15 +120,7 @@ export default function ListProfils(props) {
           >
             call
           </Button>
-          <Button onPress={() => {
-            props.navigation.navigate("Chat",
-              {
-                currentid: currentid,
-                destinataire: itemSelected.idProfile,
-
-              });
-          }
-          }>chat</Button>
+          
           <Button
             onPress={() => {
               setDialogvisible(false);

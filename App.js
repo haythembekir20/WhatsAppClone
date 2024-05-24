@@ -7,6 +7,7 @@ import Home from './Screens/Home';
 import Chat from './Screens/Chat';
 import Signup from './Screens/Signup';
 
+
 const Stack = createNativeStackNavigator();
 
 export default function App() {

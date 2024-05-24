@@ -15,7 +15,7 @@ import firebase from "../../Config";
 const storage = firebase.storage();
 const database = firebase.database();
 
-export default function Groupes(props) {
+export default function Groups(props) {
   const currentid = props.route.params.currentid;
 
   const [Nom, setNom] = useState("");
@@ -25,7 +25,17 @@ export default function Groupes(props) {
   const [urlImage, seturlImage] = useState();
 
   // Recuperer içi les données de l'utilisateur courant (Nom,Prenom,Telephone,Pseudo,url/urlImage)
-  const ref_currentuser = database.ref("nom de reference").child(currentid);
+  // get the data of the current user
+  const ref_currentuser = database.ref("users").child(currentid);
+  ref_currentuser.on("value", (snapshot) => {
+    const userData = snapshot.val();
+    setNom(userData.Nom);
+    setPrenom(userData.Prenom);
+    setTelephone(userData.Telephone);
+    setPseudo(userData.Pseudo);
+    seturlImage(userData.urlImage);
+  });
+
 
   const pickDocument = async () => {
     let result = await DocumentPicker.getDocumentAsync({});
@@ -65,6 +75,10 @@ export default function Groupes(props) {
 
   const ref_forum = database.ref("forum");
   // recuperer içi le contenu de la reference 'forum' =>
+  ref_forum.on("value", (snapshot) => {
+    const forumData = snapshot.val();
+    setData(forumData);
+  });
 
   return (
     <ImageBackground
@@ -115,6 +129,10 @@ export default function Groupes(props) {
 
       <Text style={{ fontSize: 8, fontWeight: "bold", color: "red" }}></Text>
       <Button onPress={async () => {}} title="Select file"></Button>
+      <button>
+        <Button onPress={pickDocument} title="Select file"></Button>
+        
+      </button>
       <Button onPress={async () => {}} title="Send work"></Button>
       <View
         style={{
