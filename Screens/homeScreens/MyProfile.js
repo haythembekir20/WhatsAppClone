@@ -94,7 +94,7 @@ export default function MyProfile(props) {
       <TouchableOpacity onPress={pickImage}>
         <Image
           source={
-            urlImage ? { uri: urlImage } : require("../../assets/profil.png")
+            urlImage ? { uri: urlImage } : require("../../assets/edit_user.png")
           }
           style={{
             height: 150,
@@ -175,7 +175,7 @@ export default function MyProfile(props) {
         underlayColor="#DDDDDD"
         style={{
           marginBottom: 10,
-          backgroundColor: "#4682a0",
+          backgroundColor: "#086DF7",
           textstyle: "italic",
           fontSize: 24,
           height: 40,
@@ -219,7 +219,7 @@ export default function MyProfile(props) {
         underlayColor="#DDDDDD"
         style={{
           marginBottom: 10,
-          backgroundColor: "#4682a0",
+          backgroundColor: "#086DF7",
           textstyle: "italic",
           fontSize: 24,
           height: 40,

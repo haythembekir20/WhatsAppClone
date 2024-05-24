@@ -72,21 +72,25 @@ export default function ListProfils(props) {
                 }}
               >
                 <Image
-                  source={item.url ? { uri: item.url } : require("../../assets/profil.png")}
+                  source={item.url ? { uri: item.url } : require("../../assets/edit_user.png")}
                   style={{
                     height: 50,
                     width: 50,
                   }}
                 ></Image>
               </TouchableOpacity>
-              <Text>{item.Pseudo}</Text>
+              <Text
+              style={{
+                marginLeft: 20,
+              }}
+              >{item.Pseudo}</Text>
               <View
                 style={{
                   height: 10,
                   width: 10,
                   backgroundColor: item.Connected ? "green" : "red",
                   borderRadius: 5,
-                  marginLeft: 10,
+                  marginLeft: 20,
                 }}
               ></View>
             </View>
@@ -99,7 +103,7 @@ export default function ListProfils(props) {
         <Dialog.Title> Details</Dialog.Title>
         <Dialog.Content>
           <Image
-            source={itemSelected.url ? { uri: itemSelected.url } : require("../../assets/profil.png")}
+            source={itemSelected.url ? { uri: itemSelected.url } : require("../../assets/edit_user.png")}
             style={{
               height: 50,
               width: 50,

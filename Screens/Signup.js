@@ -28,7 +28,8 @@ export default function Signup(props) {
                 alert("account created");
             })
             .catch((error) => {
-                var errorCode = error.code;
+                
+                 var errorCode = error.code;
                 var errorMessage = error.message;
                 alert(errorMessage);
             });
